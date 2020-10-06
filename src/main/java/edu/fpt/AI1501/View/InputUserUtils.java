@@ -6,7 +6,7 @@ import edu.fpt.AI1501.DAO.UserList;
 import edu.fpt.AI1501.Utils.EssentialUtils;
 
 
-public class InputUtils {
+public class InputUserUtils {
     static Scanner sc = new Scanner(System.in);
 
     public static String inputUser(boolean isReturnNullAllowed) {
@@ -131,7 +131,8 @@ public class InputUtils {
         }
     }
 
-    public static boolean loginUser(UserList list){
+    public static Integer loginUser(UserList list){
+
         sc = new Scanner(System.in);
         System.out.print("Input user:  ");
         String username = inputUser(true);
@@ -139,14 +140,14 @@ public class InputUtils {
         Integer posId = list.search(username);
         if(posId == -1){
             System.out.println("No Username Exist Or Incorrect Password!");
-            return false;
+            return -1;
         }
         
         if(password.equals(list.get(posId).getPassword())){
-            return true;
+            return posId;
         } else{
             System.out.println("No Username Exist Or Incorrect Password!");
-            return false;
+            return -1;
         }
 
         

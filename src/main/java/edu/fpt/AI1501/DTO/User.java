@@ -1,12 +1,9 @@
 package edu.fpt.AI1501.DTO;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
+public class User implements Comparable<User> {
     /**
      *
      */
-    private static final long serialVersionUID = 1L;
     private String username;
     private String password;
     private String phoneNumber;
@@ -81,6 +78,16 @@ public class User implements Serializable {
 
     public boolean equals(Object user){
         return this.getUsername().equals(((User) user).getUsername());
+    }
+
+    public String toString(){
+        return String.format("%s;%s;%s;%s;%s;%s",username,password,firstName,lastName,email,phoneNumber);
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return this.getName().compareTo(o.getName());
+        
     }
 
     

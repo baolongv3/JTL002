@@ -1,15 +1,12 @@
 package edu.fpt.AI1501.DAO;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import edu.fpt.AI1501.DTO.User;
 import edu.fpt.AI1501.Utils.EssentialUtils;
 import edu.fpt.AI1501.Utils.Menu;
-import edu.fpt.AI1501.View.InputUtils;
+import edu.fpt.AI1501.View.InputUserUtils;
 import edu.fpt.AI1501.View.PrintUtils;
 
 public class UserList extends ArrayList<User> {
@@ -17,8 +14,13 @@ public class UserList extends ArrayList<User> {
     /**
      *
      */
+
     private static final long serialVersionUID = 1L;
     final String PATH = System.getProperty("userDir", "/user/user.txt");
+
+    public UserList() {
+        
+    }
 
     public Integer search(String username) {
         return this.indexOf(new User(username));
@@ -34,12 +36,12 @@ public class UserList extends ArrayList<User> {
             String email;
             String phoneNumber;
 
-            username = InputUtils.inputUser(false);
-            password = InputUtils.inputPassword(false, true);
-            firstName = InputUtils.inputFirstName(false);
-            lastName = InputUtils.inputLastName(false);
-            email = InputUtils.inputEmail(false);
-            phoneNumber = InputUtils.inputPhoneNumber(false);
+            username = InputUserUtils.inputUser(false);
+            password = InputUserUtils.inputPassword(false, true);
+            firstName = InputUserUtils.inputFirstName(false);
+            lastName = InputUserUtils.inputLastName(false);
+            email = InputUserUtils.inputEmail(false);
+            phoneNumber = InputUserUtils.inputPhoneNumber(false);
 
             User currentUser = new User(username, password, email, phoneNumber, firstName, lastName);
 
@@ -70,20 +72,11 @@ public class UserList extends ArrayList<User> {
             return;
         }
 
-        if (!InputUtils.loginUser(this)) {
+        if ((posID = InputUserUtils.loginUser(this)) == -1) {
             return;
         }
 
-        while (true) {
-            System.out.print("Enter username: ");
-            String username = InputUtils.inputUser(false);
-            if ((posID = search(username)) == -1) {
-                System.out.println("Username does not exist!");
-
-            } else {
-                break;
-            }
-        }
+        
 
         Menu menu = new Menu("Update and Delete Menu");
 
@@ -123,7 +116,7 @@ public class UserList extends ArrayList<User> {
             Integer choice = updateMenu.getChoice();
             switch (choice) {
                 case 1:
-                    String password = InputUtils.inputPassword(true, true);
+                    String password = InputUserUtils.inputPassword(true, true);
                     if (EssentialUtils.isEmptyString(password)) {
                         System.out.println("Password unchanged!");
                     } else {
@@ -132,7 +125,7 @@ public class UserList extends ArrayList<User> {
                     }
                     break;
                 case 2:
-                    String firstName = InputUtils.inputFirstName(true);
+                    String firstName = InputUserUtils.inputFirstName(true);
                     if (EssentialUtils.isEmptyString(firstName)) {
                         System.out.println("First Name unchanged!");
                     } else {
@@ -141,7 +134,7 @@ public class UserList extends ArrayList<User> {
                     }
                     break;
                 case 3:
-                    String lastName = InputUtils.inputLastName(true);
+                    String lastName = InputUserUtils.inputLastName(true);
                     if (EssentialUtils.isEmptyString(lastName)) {
                         System.out.println("Last Name unchanged!");
                     } else {
@@ -150,7 +143,7 @@ public class UserList extends ArrayList<User> {
                     }
                     break;
                 case 4:
-                    String email = InputUtils.inputEmail(true);
+                    String email = InputUserUtils.inputEmail(true);
                     if (EssentialUtils.isEmptyString(email)) {
                         System.out.println("Email unchanged!");
                     } else {
@@ -159,7 +152,7 @@ public class UserList extends ArrayList<User> {
                     }
                     break;
                 case 5:
-                    String phoneNumber = InputUtils.inputPhoneNumber(true);
+                    String phoneNumber = InputUserUtils.inputPhoneNumber(true);
                     if (EssentialUtils.isEmptyString(phoneNumber)) {
                         System.out.println("Phone Number unchanged!");
                     } else {
@@ -184,9 +177,49 @@ public class UserList extends ArrayList<User> {
         System.out.println("User Remove Successfully!");
     }
 
-    public void saveToFile() throws IOException{
-        FileInputStream fStream = new FileInputStream(PATH);
-        ObjectInputStream oStream =  new ObjectInputStream(fStream);
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(User item : this){
+            sb.append(item.toString() + "\n");
+        }
+
+        return sb.toString();
+    }
+    
+
+    public void printFromFile(){
+        ArrayList<String> userArr = EssentialUtils.readFromFile(PATH);
+        for(String userInfo : userArr){
+            System.out.println(userInfo);
+        }
+    }
+
+    public void findFromFile(){
+        ArrayList<String> userArr = EssentialUtils.readFromFile(PATH);
+
+        
         
     }
+
+
+    public void read(){
+        ArrayList<String> userArr = EssentialUtils.readFromFile(PATH);
+
+        if(userArr == null){
+            return;
+        }
+
+        for(String userInfo : userArr){
+            StringTokenizer stk = new StringTokenizer(userInfo,";");
+            if(stk.countTokens() != 6){
+                System.out.println("User " + stk.nextToken() + " is corrupted!");   
+                break;       
+            }
+            this.add(new User(stk.nextToken(), stk.nextToken(),stk.nextToken(),stk.nextToken(),stk.nextToken(),stk.nextToken()));
+
+           
+        }
+    }
+
+    
 }
