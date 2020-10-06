@@ -6,20 +6,24 @@
 package edu.fpt.AI1501.Utils;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import edu.fpt.AI1501.DAO.UserList;
 
 
 
@@ -121,36 +125,37 @@ public class EssentialUtils {
         return encryptedText;
     }
 
-    public static ArrayList<String> readFromFile(String path){
-        Path filePath = Paths.get(path);
-        ArrayList<String> itemArray = new ArrayList<>();
-        try{
-            String info = Files.readString(filePath);
-            StringTokenizer stk = new StringTokenizer(info,"\n");
-            while(stk.hasMoreTokens()){
-                itemArray.add(stk.nextToken());
-            }         
 
-            if(itemArray.isEmpty()){
-                System.out.println("Nothing to read!");
-                return null;
-            } else{
-                return itemArray;
-            }
+    public static UserList readFromFile(String path){
+        Path filePath = Paths.get(path);
+        String userListString ;
+
+        try{
+            userListString = Files.readString(filePath);
 
         }catch(IOException e){
-            System.out.println("File inaccessible!");
+            System.out.println("File Read Error!");
             return null;
         }
+
+        Gson gson = new Gson();
+
+        Type userListType = new TypeToken<UserList>(){}.getType();
+        UserList userList = gson.fromJson(userListString,userListType);
+
+        return userList;
+        
         
 
     }
 
-    public boolean saveToFile(String fileName, String infoOut){
+    public static boolean saveToFile(String fileName, String infoOut){
         Path path = Paths.get(fileName);
+        
 
         try{
             Files.writeString(path, infoOut, StandardOpenOption.CREATE,StandardOpenOption.TRUNCATE_EXISTING);
+            System.out.println("Save Completed!");
             return true;
         }catch(IOException e){
             System.out.println("Save Failed!");

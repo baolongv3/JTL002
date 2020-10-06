@@ -1,7 +1,8 @@
 package edu.fpt.AI1501.DAO;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+
+import com.google.gson.Gson;
 
 import edu.fpt.AI1501.DTO.User;
 import edu.fpt.AI1501.Utils.EssentialUtils;
@@ -178,48 +179,34 @@ public class UserList extends ArrayList<User> {
     }
 
     public String toString(){
-        StringBuilder sb = new StringBuilder();
-        for(User item : this){
-            sb.append(item.toString() + "\n");
-        }
-
-        return sb.toString();
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
     
 
     public void printFromFile(){
-        ArrayList<String> userArr = EssentialUtils.readFromFile(PATH);
-        for(String userInfo : userArr){
+        UserList userArr = EssentialUtils.readFromFile(PATH);
+        for(User userInfo : userArr){
             System.out.println(userInfo);
         }
     }
 
     public void findFromFile(){
-        ArrayList<String> userArr = EssentialUtils.readFromFile(PATH);
+        UserList tempArr = EssentialUtils.readFromFile(PATH);
+        
 
         
         
     }
 
-
-    public void read(){
-        ArrayList<String> userArr = EssentialUtils.readFromFile(PATH);
-
-        if(userArr == null){
-            return;
-        }
-
-        for(String userInfo : userArr){
-            StringTokenizer stk = new StringTokenizer(userInfo,";");
-            if(stk.countTokens() != 6){
-                System.out.println("User " + stk.nextToken() + " is corrupted!");   
-                break;       
-            }
-            this.add(new User(stk.nextToken(), stk.nextToken(),stk.nextToken(),stk.nextToken(),stk.nextToken(),stk.nextToken()));
-
-           
-        }
+    public void saveToFile(){
+        EssentialUtils.saveToFile(PATH, this.toString());
     }
+
+
+
+
+    
 
     
 }
