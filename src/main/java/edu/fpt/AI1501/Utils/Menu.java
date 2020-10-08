@@ -43,7 +43,7 @@ public class Menu extends ArrayList<String> {
             for(String item : this){
                 System.out.println(String.format("[%d] %s",++i,item));
             }
-            System.out.println(String.format("%d",exitDialogue));
+            System.out.println(String.format("Others: %s",exitDialogue));
         }
     }
     

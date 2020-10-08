@@ -1,5 +1,7 @@
 package edu.fpt.AI1501.DTO;
 
+import edu.fpt.AI1501.Utils.EssentialUtils;
+
 public class User implements Comparable<User> {
     /**
      *
@@ -84,9 +86,19 @@ public class User implements Comparable<User> {
         return String.format("%s;%s;%s;%s;%s;%s",username,password,firstName,lastName,email,phoneNumber);
     }
 
+    public boolean checkValid(){
+        if(!EssentialUtils.isUsernameValid(username))  return false;
+        if(!EssentialUtils.isEncryptedPasswordValid(password)) return false;
+        if(!EssentialUtils.isPhoneNumberValid(phoneNumber)) return false;
+        if(!EssentialUtils.isEmailValid(email)) return false;
+        return true;
+
+        
+    }
+
     @Override
     public int compareTo(User o) {
-        return this.getName().compareTo(o.getName());
+        return this.getFirstName().compareTo(o.getFirstName());
         
     }
 

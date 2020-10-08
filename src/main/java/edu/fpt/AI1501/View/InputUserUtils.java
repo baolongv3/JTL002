@@ -9,19 +9,20 @@ import edu.fpt.AI1501.Utils.EssentialUtils;
 public class InputUserUtils {
     static Scanner sc = new Scanner(System.in);
 
-    public static String inputUser(boolean isReturnNullAllowed) {
+    public static String inputUsername(boolean isReturnNullAllowed) {
         while (true) {            
             sc = new Scanner(System.in);
             System.out.print("Input Username:  ");
             String username = sc.nextLine();
             boolean isNull = EssentialUtils.isEmptyString(username);
+            boolean isUsernameValid = EssentialUtils.isUsernameValid(username);
             if(isReturnNullAllowed && isNull){
                 return null;
             }
-            if(!isNull){
+            if(!isNull && isUsernameValid){
                 return username;
             }
-            System.out.println("Username cannot be null!");
+            System.out.println("Username cannot be null And Must Above 5 Character And No Space");
         }
     }
 
@@ -29,6 +30,7 @@ public class InputUserUtils {
     public static String inputEmail(boolean isReturnNullAllowed){
         while(true){
             sc = new Scanner(System.in);
+            System.out.print("Enter Email: ");
             String email = sc.nextLine();
             boolean isNull = EssentialUtils.isEmptyString(email);
             boolean isEmailValid = EssentialUtils.isEmailValid(email);
@@ -62,7 +64,7 @@ public class InputUserUtils {
             if(!isNull && isPasswordValid){
                 return EssentialUtils.encryptMessage(password);
             }
-            System.out.println("Password Format Incorrect! Must be above 8");
+            System.out.println("Password Format Incorrect! Must be above 8 and no space");
             
         }
     }
@@ -70,8 +72,8 @@ public class InputUserUtils {
     public static boolean confirmPassword(String srcPassword){
         while(true){
             sc = new Scanner(System.in);
-            String conPassword = sc.nextLine();
-            System.out.print("Enter the typed password");
+            System.out.print("Enter the typed password: ");
+            String conPassword = sc.nextLine();          
             if(conPassword.equals(srcPassword)){
                 return true;
             } else{
@@ -102,7 +104,7 @@ public class InputUserUtils {
     public static String inputLastName(boolean isNullAllowed){
         while(true){
             sc = new Scanner(System.in);
-            System.out.print("Enter First Name:  ");
+            System.out.print("Enter Last Name:  ");
             String lastName = sc.nextLine();
             boolean isNull = EssentialUtils.isEmptyString(lastName);
             if(isNull && isNullAllowed){
@@ -131,11 +133,27 @@ public class InputUserUtils {
         }
     }
 
+    public static String inputName(boolean isNullAllowed){
+        while(true){
+            sc = new Scanner(System.in);
+            System.out.print("Enter First Name:  ");
+            String name = sc.nextLine();
+            boolean isNull = EssentialUtils.isEmptyString(name);
+            if(isNull && isNullAllowed){
+                return null;
+            }
+            if(!isNull){
+                return EssentialUtils.capitalizeName(name);
+            }
+            System.out.println("Name cannot be empty!");
+        }
+    }
+
     public static Integer loginUser(UserList list){
 
         sc = new Scanner(System.in);
-        System.out.print("Input user:  ");
-        String username = inputUser(true);
+        System.out.println("Input Username And Password To Perform Delete Action");
+        String username = inputUsername(true);
         String password = inputPassword(true,false);
         Integer posId = list.search(username);
         if(posId == -1){

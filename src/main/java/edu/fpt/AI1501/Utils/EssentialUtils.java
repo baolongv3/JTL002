@@ -6,7 +6,6 @@
 package edu.fpt.AI1501.Utils;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,10 +17,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
+import com.google.gson.JsonSyntaxException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
+
 
 import edu.fpt.AI1501.DAO.UserList;
 
@@ -35,7 +34,6 @@ public class EssentialUtils {
     private static final Pattern PHONE_PATTERN = Pattern.compile("^[0-9]{10}$");
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^\\w+[A-Z0-9._%+-]?+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
             Pattern.CASE_INSENSITIVE);
-    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[\\s]+$");
     private static final String DATE_FORMAT = "dd/MM/yyyy";
 
     private static Scanner sc = new Scanner(System.in);
@@ -68,6 +66,13 @@ public class EssentialUtils {
 
     // Check null and empty String
     public static boolean isEmptyString(String string) {
+        if(string == null){
+            return true;
+        }
+        if(string.isEmpty()){
+            return true;
+        }
+        
         return string.isBlank();
     }
 
@@ -78,7 +83,7 @@ public class EssentialUtils {
         String userChoice = null;
         boolean choice = false;
         do {
-            System.out.print(questionDialog);
+            System.out.print(questionDialog + " (Y/N): ");
             userChoice = sc.nextLine().toUpperCase();
             if (userChoice.equals("N")) {
                 choice = false;
@@ -104,20 +109,35 @@ public class EssentialUtils {
     }
     
     public static boolean isPasswordValid(String password){
-        Matcher matcher = PASSWORD_PATTERN.matcher(password);
 
 
-        if(password.length() < 8){
+        if(password.length() < 8 || password.contains(" ")){
             return false;
         }
 
-        if(matcher.find()){
-            return false;
-        }
 
         return true;
 
         
+    }
+
+    public static boolean isUsernameValid(String username){
+
+
+
+        if(username.length() < 5 || username.contains(" ")){
+            return false;
+        }
+
+
+        return true;
+    }
+
+    public static boolean isEncryptedPasswordValid(String password){
+        if(password.length() != 64){
+            return false;
+        } 
+        return true;
     }
 
     public static String encryptMessage(String text){
@@ -133,17 +153,21 @@ public class EssentialUtils {
         try{
             userListString = Files.readString(filePath);
 
-        }catch(IOException e){
-            System.out.println("File Read Error!");
+        }catch(IOException e){           
+            return null;
+        }
+        try{
+            Gson gson = new Gson();
+
+            UserList userList = gson.fromJson(userListString,UserList.class);
+
+            return userList;
+        } catch(JsonSyntaxException e){
+            System.out.println("Parse Error!");
             return null;
         }
 
-        Gson gson = new Gson();
-
-        Type userListType = new TypeToken<UserList>(){}.getType();
-        UserList userList = gson.fromJson(userListString,userListType);
-
-        return userList;
+        
         
         
 
