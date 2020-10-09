@@ -136,14 +136,14 @@ public class InputUserUtils {
     public static String inputName(boolean isNullAllowed){
         while(true){
             sc = new Scanner(System.in);
-            System.out.print("Enter First Name:  ");
+            System.out.print("Enter Portion of a Name:  ");
             String name = sc.nextLine();
             boolean isNull = EssentialUtils.isEmptyString(name);
             if(isNull && isNullAllowed){
                 return null;
             }
             if(!isNull){
-                return EssentialUtils.capitalizeName(name);
+                return name;
             }
             System.out.println("Name cannot be empty!");
         }

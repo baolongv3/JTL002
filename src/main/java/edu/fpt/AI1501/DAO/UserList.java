@@ -171,6 +171,7 @@ public class UserList extends ArrayList<User> {
                         this.get(posID).setPhoneNumber(phoneNumber);
                         System.out.println("Phone Number changed successfully!");
                     }
+                    break;
                 default:
                     System.out.println("Update Exited!");
                     return;
@@ -202,6 +203,10 @@ public class UserList extends ArrayList<User> {
             return;
         }
 
+        if(fileUserList.isEmpty()){
+            System.out.println("Empty List!");
+        }
+
         Collections.sort(fileUserList);
         
         PrintUtils.printUserList(fileUserList);
@@ -221,14 +226,19 @@ public class UserList extends ArrayList<User> {
             return;
         }
         while(true){
-            String nameToSearch = InputUserUtils.inputName(false);
+            String nameToSearch = InputUserUtils.inputName(false).toUpperCase();
 
-            
+            Integer count = 0;
 
             for(User user : fileUserList){
-                if(user.getName().contains(nameToSearch)){
+                if(user.getName().toUpperCase().contains(nameToSearch)){
                     PrintUtils.printUserInfo(user);
+                    ++count;
                 }
+            }
+
+            if(count == 0){
+                System.out.println("No User Found!");
             }
 
             boolean isContinue = EssentialUtils.chooseYN("Do you want to continue?");

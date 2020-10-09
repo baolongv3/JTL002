@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.fpt.AI1501.AppTest" time="0.053" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.fpt.AI1501.AppTest" time="0.041" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\OpenJDK\jdk-15\bin"/>
-    <property name="sun.java.command" value="C:\Users\ACER\AppData\Local\Temp\surefire4941617993600233388\surefirebooter9858154635184056786.jar C:\Users\ACER\AppData\Local\Temp\surefire4941617993600233388 2020-10-09T13-25-24_762-jvmRun1 surefire16881668605070569639tmp surefire_018145501878909793580tmp"/>
+    <property name="sun.java.command" value="C:\Users\ACER\AppData\Local\Temp\surefire17537126585727908299\surefirebooter144507635615597970.jar C:\Users\ACER\AppData\Local\Temp\surefire17537126585727908299 2020-10-09T14-27-44_584-jvmRun1 surefire7719980546696041546tmp surefire_03801672112475525844tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\ACER\Google Drive\FPT-SE\Fall 2020\LAB221\Submission\JTL002\JTL002\target\test-classes;C:\Users\ACER\Google Drive\FPT-SE\Fall 2020\LAB221\Submission\JTL002\JTL002\target\classes;C:\Users\ACER\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\ACER\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\ACER\.m2\repository\org\apache\commons\commons-lang3\3.0\commons-lang3-3.0.jar;C:\Users\ACER\.m2\repository\com\google\code\gson\gson\2.8.6\gson-2.8.6.jar;C:\Users\ACER\.m2\repository\commons-codec\commons-codec\1.11\commons-codec-1.11.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\ACER\AppData\Local\Temp\surefire4941617993600233388\surefirebooter9858154635184056786.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ACER\AppData\Local\Temp\surefire17537126585727908299\surefirebooter144507635615597970.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="15+36-1562"/>

@@ -111,7 +111,7 @@ public class EssentialUtils {
     public static boolean isPasswordValid(String password){
 
 
-        if(password.length() < 8 || password.contains(" ")){
+        if(password.length() < 6 || password.contains(" ")){
             return false;
         }
 
