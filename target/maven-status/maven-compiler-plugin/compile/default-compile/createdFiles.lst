@@ -2,7 +2,6 @@ edu\fpt\AI1501\View\InputUserUtils.class
 edu\fpt\AI1501\DAO\UserList.class
 edu\fpt\AI1501\Utils\Menu.class
 edu\fpt\AI1501\View\PrintUtils.class
-edu\fpt\AI1501\Utils\EssentialUtils$1.class
 edu\fpt\AI1501\DTO\User.class
 edu\fpt\AI1501\App.class
 edu\fpt\AI1501\Utils\EssentialUtils.class

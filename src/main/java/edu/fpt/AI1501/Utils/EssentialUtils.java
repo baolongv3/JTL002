@@ -73,7 +73,7 @@ public class EssentialUtils {
             return true;
         }
         
-        return string.isBlank();
+        return StringUtils.isBlank(string);
     }
 
     

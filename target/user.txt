@@ -1,0 +1,18 @@
+[
+  {
+    "username": "baolongv3",
+    "password": "b41295b795dc8264b25f0f28e1f099a090a8c4be142d25628e5bbc16b4c1edd9",
+    "phoneNumber": "1231231231",
+    "email": "baolongv4@gmail.com",
+    "firstName": "Bao Long",
+    "lastName": "Nguyen Ngoc"
+  },
+  {
+    "username": "baolongv4",
+    "password": "7057b789f82bf60590eb93bf5747223404823ec2281825349220249d3f48d297",
+    "phoneNumber": "1231231231",
+    "email": "baolongv5@gmail.com",
+    "firstName": "An",
+    "lastName": "Hoang Van"
+  }
+]
