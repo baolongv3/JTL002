@@ -46,84 +46,83 @@ public class InputUserUtils {
         }
     }
 
-    public static String inputPassword(boolean isNullAllowed, boolean isRegister){
+    public static String inputPassword(boolean isReturnNullAllowed, boolean isRegister){
         while(true){
             sc = new Scanner(System.in);
             System.out.print("Input password: ");
             String password = sc.nextLine();
             boolean isNull = EssentialUtils.isEmptyString(password);
             boolean isPasswordValid = EssentialUtils.isPasswordValid(password);
-            if(isNullAllowed && isNull){
+            if(isReturnNullAllowed && isNull) {
                 return null;
             }
-            if(!isNull && isPasswordValid && isRegister){
-                if(confirmPassword(password)){
+            if (!isNull && isPasswordValid && isRegister) {
+                if (confirmPassword(password)) {
                     return EssentialUtils.encryptMessage(password);
                 }
             }
-            if(!isNull && isPasswordValid){
+            if (!isNull && isPasswordValid) {
                 return EssentialUtils.encryptMessage(password);
             }
             System.out.println("Password Format Incorrect! Must be above 8 and no space");
-            
+
         }
     }
 
-    public static boolean confirmPassword(String srcPassword){
-        while(true){
+    public static boolean confirmPassword(String srcPassword) {
+        while (true) {
             sc = new Scanner(System.in);
             System.out.print("Enter the typed password: ");
-            String conPassword = sc.nextLine();          
-            if(conPassword.equals(srcPassword)){
+            String conPassword = sc.nextLine();
+            if (conPassword.equals(srcPassword)) {
                 return true;
-            } else{
+            } else {
                 System.out.println("Try Again!");
             }
-            
+
         }
     }
 
-    public static String inputPhoneNumber(boolean isNullAllowed){
-        while(true){
+    public static String inputPhoneNumber(boolean isReturnNullAllowed) {
+        while (true) {
             sc = new Scanner(System.in);
             System.out.print("Enter phone number:  ");
             String phoneNumber = sc.nextLine();
             boolean isNull = EssentialUtils.isEmptyString(phoneNumber);
             boolean isPhoneNumberValid = EssentialUtils.isPhoneNumberValid(phoneNumber);
-            if(isNullAllowed && isNull){
+            if (isReturnNullAllowed && isNull) {
                 return null;
             }
-            if(!isNull && isPhoneNumberValid){
+            if (!isNull && isPhoneNumberValid) {
                 return phoneNumber;
             }
             System.out.println("Phone Number Format Invalid!");
         }
     }
 
-
-    public static String inputLastName(boolean isNullAllowed){
-        while(true){
+    public static String inputLastName(boolean isReturnNullAllowed) {
+        while (true) {
             sc = new Scanner(System.in);
             System.out.print("Enter Last Name:  ");
             String lastName = sc.nextLine();
             boolean isNull = EssentialUtils.isEmptyString(lastName);
-            if(isNull && isNullAllowed){
+            if (isNull && isReturnNullAllowed) {
                 return null;
             }
-            if(!isNull){
+            if (!isNull) {
                 return EssentialUtils.capitalizeName(lastName);
             }
             System.out.println("Last Name cannot be empty!");
         }
     }
 
-    public static String inputFirstName(boolean isNullAllowed){
-        while(true){
+    public static String inputFirstName(boolean isReturnNullAllowed) {
+        while (true) {
             sc = new Scanner(System.in);
             System.out.print("Enter First Name:  ");
             String firstName = sc.nextLine();
             boolean isNull = EssentialUtils.isEmptyString(firstName);
-            if(isNull && isNullAllowed){
+            if (isNull && isReturnNullAllowed) {
                 return null;
             }
             if(!isNull){

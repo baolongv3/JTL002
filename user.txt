@@ -1,0 +1,10 @@
+[
+  {
+    "username": "baolongv3",
+    "password": "7057b789f82bf60590eb93bf5747223404823ec2281825349220249d3f48d297",
+    "phoneNumber": "1231231231",
+    "email": "baolongv5@gmail.com",
+    "firstName": "Baolong",
+    "lastName": "Nguyen Ngoc"
+  }
+]

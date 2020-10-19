@@ -30,7 +30,11 @@ public class UserList extends ArrayList<User> {
     }
 
     public Integer search(String username) {
-        return this.indexOf(new User(username));
+        try{
+            return this.indexOf(new User(username));
+        }catch(NullPointerException e){
+            return -1;
+        }
     }
 
     public void add() {

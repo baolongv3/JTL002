@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "username": "baolongv3",
+    "password": "932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef",
+    "phoneNumber": "1231231231",
+    "email": "baolongv4@gmail.com",
+    "firstName": "Long",
+    "lastName": "Bao"
+  },
+  {
+    "username": "dang;",
+    "password": "bc568934f762fe002300513a159b24972f3072651079bf287e7d591dfdb77858",
+    "phoneNumber": "1234567897",
+    "email": "kar@gm.co",
+    "firstName": "Dang  Minh",
+    "lastName": "Tuan"
+  },
+  {
+    "username": "baolongv4",
+    "password": "7057b789f82bf60590eb93bf5747223404823ec2281825349220249d3f48d297",
+    "phoneNumber": "1231231231",
+    "email": "baolongv4@gmail.com",
+    "firstName": "Baolong",
+    "lastName": "Nguyenngoc"
+  }
+]

@@ -124,7 +124,6 @@ public class EssentialUtils {
     public static boolean isUsernameValid(String username){
 
 
-
         if(username.length() < 5 || username.contains(" ")){
             return false;
         }
